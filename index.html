@@ -8,8 +8,8 @@
   <script type="text/javascript" src="akihabara/akihabara/gamecycle.js"></script>
 
   <script type="text/javascript" src="map/map.js"></script>
-  <script type="text/javascript" src="player/player.js"></script>
   <script type="text/javascript" src="screens/screens.js"></script>
+  <script type="text/javascript" src="actors/player.js"></script>
 
   <style>BODY { -webkit-user-select: none; margin: 0px }</style>
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
@@ -41,11 +41,7 @@ function loadGame() {
   maingame.gameIntroAnimation = function() { return true; };
   maingame.gameTitleIntroAnimation = introScreenAnimation;
   maingame.initializeGame = function() {
-    // Create the 'player' (see tutorial Part 2 for a detailed explanation)
-    addPlayer();
-
-    // Create the 'map' (see tutorial Part 3 for a detailed explanation)
-    addMap();
+    addActors();
 
     // This gives us the time at which the game started,
     //  in milliseconds since the epoch
@@ -76,6 +72,14 @@ function loadGame() {
   gbox.createCanvas('map_canvas', { w: map.w, h: map.h });
   gbox.blitTilemap(gbox.getCanvasContext('map_canvas'), map);
   gbox.go();
+}
+
+function addActors() {
+  // Create the 'player' (see tutorial Part 2 for a detailed explanation)
+  addPlayer();
+
+  // Create the 'map' (see tutorial Part 3 for a detailed explanation)
+  addMap();
 }
 </script>
 </head><body></body></html>
