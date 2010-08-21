@@ -28,15 +28,9 @@ function loadResources() {
     height: 480,
     zoom: 1
   });
-  
-  gbox.addImage('font', 'resources/font.png');
-  gbox.addImage('logo', 'resources/logo.png');
-  gbox.addImage('player_sprite', 'resources/player_sprite.png');
-  gbox.addImage('map_spritesheet', 'resources/map_pieces.png');
-  gbox.addImage('enemy_sprite', 'resources/enemy_sprite.png');
-  gbox.addImage('player_bullet', 'resources/bullet.png');
 
-  gbox.addImage("sprites","resources/explode.png");
+  gbox.addBundle({file:"resources/bundle.js"});
+
   gbox.addTiles({id:"explosion",image:"sprites",tileh:32,tilew:32,tilerow:4,gapx:0,gapy:0});
   
   gbox.addTiles({
