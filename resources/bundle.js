@@ -7,7 +7,8 @@
 		['map_spritesheet', 'resources/map_pieces.png'],
 		['enemy_sprite',    'resources/enemy_sprite.png'],
 		['player_bullet',   'resources/bullet.png'],
-		['sprites',         'resources/explode.png']
+		['sprites',         'resources/explode.png'],
+		['cow',             'resources/cow_1.png']
 	],
 
   addFont: [
@@ -16,6 +17,7 @@
 
   addTiles:[
    {id:"explosion",image:"sprites",tileh:32,tilew:32,tilerow:4,gapx:0,gapy:0},
+   { id: 'cow', image: 'cow', tileh: 64,tilew: 64, tilerow: 1, gapx: 0, gapy: 0},
    {
     id:      'player_tiles',
     image:   'player_sprite',

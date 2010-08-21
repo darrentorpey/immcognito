@@ -8,8 +8,8 @@ function addPlayer() {
 
     initialize: function() {
       toys.topview.initialize(this, {});
-      this.x = 20;
-      this.y = 20;
+      this.x = TILE_WIDTH * 2;
+      this.y = TILE_WIDTH * 2;
 
       // Here we define the list of animations. We can name these whatever we want.
       // These are referenced with this.animList[id].

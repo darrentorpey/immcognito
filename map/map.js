@@ -4,10 +4,10 @@ function loadMap() {
 "x                                      x",
 "x                                      x",
 "x                                      x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
+"x     ^^^^                             x",
+"x     ^^^^                             x",
+"x     ^^^^                             x",
+"x     ^^^^                             x",
 "x                                      x",
 "x                                      x",
 "x                                      x",
@@ -30,7 +30,7 @@ function loadMap() {
 "x                                      x",
 "x                                      x",
 "xxxx     xxxxxxxxxxxxxxxxxxxxxx     xxxx",
-    ], [ [null, ' '], [0, 'x'] ])
+    ], [ [null, ' '], [0, 'x'], [1, '^']])
 }
 
 // This is our function for adding the map object -- this keeps our main game code nice and clean
@@ -39,7 +39,6 @@ function addMap() {
   gbox.addObject({
     id:    'background_id', // This is the object ID.
     group: 'background',    // We use the 'backround' group we created above with our 'setGroups' call.
-
 
     first: function() {
       // Increment the global frame counter.

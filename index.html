@@ -19,6 +19,8 @@ var map;
 var frameCount = 0;  // This keeps track of how many frames have been rendered in total
 var timeStarted;     // This will record the current time when the game started
 
+var TILE_WIDTH = 8;
+
 window.addEventListener('load', function () {
   help.akihabaraInit({
     title: '8by5',
@@ -33,7 +35,7 @@ window.addEventListener('load', function () {
 }, false);
 
 function loadGame() {
-  gbox.setGroups(['background', 'bullets', 'player', 'enemy', 'game']);
+  gbox.setGroups(['background', 'bullets', 'workplaces', 'player', 'enemy', 'game']);
 
   maingame = gamecycle.createMaingame('game', 'game');
 
@@ -80,6 +82,48 @@ function addActors() {
 
   // Create the 'map' (see tutorial Part 3 for a detailed explanation)
   addMap();
+
+  // Workplaces
+  addWorkplaces();
+}
+
+function addWorkplaces() {
+  gbox.addObject({
+    id:      'cow_1',    // id refers to the specific object.
+    group:   'workplaces',       // The rendering group
+    tileset: 'cow', // tileset is where the graphics come from.
+    colh:    gbox.getTiles('cow').tileh,
+
+    initialize: function() {
+      toys.topview.initialize(this, {});
+      this.x = TILE_WIDTH * 12;
+      this.y = TILE_WIDTH * 8;
+    },
+
+    first: function() {
+      toys.topview.controlKeys(this, { left: 'left', right: 'right', up: 'up', down: 'down' });
+
+      // Set the animation.
+      // if (frameCount % this.animList[this.animIndex].speed == 0)
+        // this.frame = help.decideFrame(frameCount, this.animList[this.animIndex]);
+
+      // New code for Part 7
+      callWhenColliding(this, 'enemy', 'gameOverFail');
+    },
+
+    blit: function() {
+      gbox.blitTile(gbox.getBufferContext(), {
+        tileset: this.tileset,
+        tile:    this.frame,
+        dx:      this.x,
+        dy:      this.y,
+        fliph:   this.fliph,
+        flipv:   this.flipv,
+        camera:  this.camera,
+        alpha:   1.0
+      });
+    },
+  });
 }
 </script>
 </head><body></body></html>
