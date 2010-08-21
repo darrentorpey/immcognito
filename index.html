@@ -17,7 +17,6 @@
 var maingame;
 var map;
 var frameCount = 0;  // This keeps track of how many frames have been rendered in total
-var TIME_LIMIT = 10; // This will determine how many seconds the player must survive to win
 var timeStarted;     // This will record the current time when the game started
 
 window.addEventListener('load', function () {
@@ -30,10 +29,10 @@ window.addEventListener('load', function () {
 
   gbox.addBundle({ file: 'resources/bundle.js' });
 
-  gbox.loadAll(main);
+  gbox.loadAll(loadGame);
 }, false);
 
-function main() {
+function loadGame() {
   gbox.setGroups(['background', 'bullets', 'player', 'enemy', 'game']);
 
   maingame = gamecycle.createMaingame('game', 'game');
