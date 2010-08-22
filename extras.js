@@ -4,3 +4,7 @@ function any(arr, test) {
     if (test(arr[i])) result = true;
   return result;
 }
+
+gbox.getGroup = function(group) {
+  return this._objects[group];
+}

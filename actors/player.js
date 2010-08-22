@@ -49,16 +49,12 @@ function addPlayer() {
         // console.log(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map));
         if (any(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map), function(i) { return i == 1 })) {
           console.log('Tippin time!');
-          gbox.getObject('workplaces', 'cow_1').tip();
+
+          var nearestWorkplace = findNearestWorkplace(this);
+          nearestWorkplace.tip();
         }
       } else if (gbox.keyIsHit("b")) {
-        // var capman=gbox.getObject("player","capman"); // As usual, first we pick our capman object...
-        // maingame.bullettimer=10; // ...stop the game for a while.
-        // capman.kill(); // ...kill capman. "kill" is the custom method we've created into the capman object.
       } else if (gbox.keyIsHit('c')) {
-        // var ghost = GHOSTS[0];
-        //toys.topview.controlKeys(ghost,{pressleft:1});
-        // ghost.swap();
       }
 
       // Set the animation.
@@ -113,4 +109,23 @@ function callWhenColliding(obj,group,call) {
         return i;
       }
   return false;
+}
+
+function findNearestWorkplace(obj) {
+  var places = gbox.getGroup('workplaces');
+  var best_dist = 100000;
+  var closest = null;
+  var group = 'workplaces';
+
+  for (var locationName in gbox.getGroup(group)) {
+    var place = gbox.getObject(group, locationName);
+    var distance = trigo.getDistance({ x: obj.x, y: obj.y }, { x: place.x, y: place.y })
+
+    if (distance < best_dist) {
+      best_dist = distance;
+      closest = place;
+    }
+  }
+
+  return closest;
 }
