@@ -8,7 +8,9 @@
 		['enemy_sprite',    'resources/enemy_sprite.png'],
 		['player_bullet',   'resources/bullet.png'],
 		['sprites',         'resources/explode.png'],
-		['cow',             'resources/cow_1.png']
+		['cow',             'resources/cow_1.png'],
+		['logo_thingy',     'resources/logo_thingy_32.png'],
+		['boss_face',       'resources/boss_face_1_64.png']
 	],
 
   addFont: [
@@ -38,6 +40,22 @@
     image:   'enemy_sprite',
     tileh:   16,
     tilew:   16,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0
+  }, {
+    id:      'boss_face_tiles',
+    image:   'boss_face',
+    tileh:   64,
+    tilew:   64,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0
+  }, {
+    id:     'family_items',
+    image:  'logo_thingy',
+    tileh:   32,
+    tilew:   32,
     tilerow: 1,
     gapx:    0,
     gapy:    0

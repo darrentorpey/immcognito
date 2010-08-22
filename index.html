@@ -12,6 +12,8 @@
   <script type="text/javascript" src="actors/player.js"></script>
   <script type="text/javascript" src="actors/enemies.js"></script>
   <script type="text/javascript" src="actors/workplaces.js"></script>
+  <script type="text/javascript" src="actors/family_items.js"></script>
+  <script type="text/javascript" src="hud/hud.js"></script>
   <script type="text/javascript" src="extras.js"></script>
 
   <style>BODY { -webkit-user-select: none; margin: 0px }</style>
@@ -30,7 +32,7 @@ var TILE_WIDTH = 8;
 window.addEventListener('load', function () {
   help.akihabaraInit({
     title:  '8by5',
-    width:  640,
+    width:  720,
     height: 480,
     zoom:   1
   });
@@ -41,7 +43,7 @@ window.addEventListener('load', function () {
 }, false);
 
 function loadGame() {
-  gbox.setGroups(['background', 'bullets', 'workplaces', 'player', 'enemy', 'game']);
+  gbox.setGroups(['background', 'bullets', 'workplaces', 'family_items', 'player', 'enemy', 'game']);
 
   maingame = gamecycle.createMaingame('game', 'game');
 
@@ -55,17 +57,7 @@ function loadGame() {
     //  in milliseconds since the epoch
     timeStarted = (new Date()).getTime();
 
-    // This adds a "label" widget, with "small"-font text to the screen
-    //  located 25 pixels down from the top of the screen and
-    //  40 pixels back from the right side of the screen
-    maingame.hud.setWidget('time_survived', {
-      widget: 'label',
-      font:   'small',
-      value:  0,
-      dx:     gbox.getScreenW() - 40,
-      dy:     25,
-      clear:  true
-    });
+    drawHUD();
   };
 
   // Here we setup our map. See part 3 for a detailed explanation
@@ -95,7 +87,8 @@ function addActors() {
   addWorkplaces();
   
   addEnemies();
-}
 
+  addFamilyItems();
+}
 </script>
 </head><body></body></html>

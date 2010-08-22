@@ -34,11 +34,12 @@ function addPlayer() {
       // The if statements check for accelerations in the x and y directions and whether they are positive or negative. It then sets the animation index to the keyword corresponding to that direction.
       if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
       else this.animIndex = 'moving'
-      // if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
+
       // if (this.accx > 0 && this.accy == 0)  this.animIndex = 'right';
       if (this.accx > 0 && this.accy > 0)   this.flipv = true;
       if (this.accx == 0 && this.accy > 0)  this.flipv = true;
       if (this.accx < 0 && this.accy > 0)   this.flipv = true;
+
       // if (this.accx < 0 && this.accy == 0)  this.animIndex = 'left';
       if (this.accx < 0 && this.accy < 0)   this.flipv = false;
       if (this.accx == 0 && this.accy < 0)  this.flipv = false;
@@ -66,7 +67,7 @@ function addPlayer() {
       }
 
       // New code for Part 7
-      callWhenColliding(this, 'enemy', 'gameOverFail');
+      callWhenColliding(this, 'family_items', 'pickedUp');
     },
 
     can_move: function() {
@@ -96,6 +97,13 @@ function addPlayer() {
         alpha:   1.0
       });
     },
+
+    addFamilyItem: function(item) {
+      console.log("adding item to me...");
+      item.alpha = 0;
+      maingame.hud.pushValue("family_collection", "value", item.frame);
+      gbox.trashObject(item);
+    }
   });
 
   return gbox.getObject('player', 'player_id');
