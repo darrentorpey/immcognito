@@ -9,7 +9,7 @@
 		['player_bullet',   'resources/bullet.png'],
 		['sprites',         'resources/explode.png'],
 		['cow',             'resources/cow_1.png'],
-		['logo_thingy',     'resources/logo_thingy_32.png'],
+		['family_items',    'resources/family_items.png'],
 		['boss_face',       'resources/boss_face_1_64.png']
 	],
 
@@ -53,11 +53,19 @@
     gapy:    0
   }, {
     id:     'family_items',
-    image:  'logo_thingy',
+    image:  'family_items',
     tileh:   32,
     tilew:   32,
     tilerow: 1,
     gapx:    0,
+    gapy:    0
+  }, {
+    id:     'family_items_2',
+    image:  'family_items',
+    tileh:   32,
+    tilew:   32,
+    tilerow: 1,
+    gapx:    32,
     gapy:    0
   }
   ]

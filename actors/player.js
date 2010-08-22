@@ -101,7 +101,7 @@ function addPlayer() {
     addFamilyItem: function(item) {
       console.log("adding item to me...");
       item.alpha = 0;
-      maingame.hud.pushValue("family_collection", "value", item.frame);
+      maingame.hud.pushValue("family_collection", "value", item.tile_frame);
       gbox.trashObject(item);
     }
   });

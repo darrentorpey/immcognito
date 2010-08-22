@@ -1,16 +1,17 @@
 function addFamilyItems() {
-  addFamilyItem();
-  addFamilyItem();
+  addFamilyItem(1, { tileset: 'family_items', x: 4, y: 4 });
+  addFamilyItem(2, { tile_frame: 1, tileset: 'family_items_2', x: 30, y: 30 });
 }
 
-function addFamilyItem() {
+function addFamilyItem(id_num, settings) {
   gbox.addObject({
-    id:            'first_family_item',
+    id:            'first_family_item_' + id_num,
     group:         'family_items',
-    tileset:       'family_items',
+    tileset:       settings ? settings.tileset : 'family_items',
+    tile_frame:    settings ? (settings.tile_frame || 0) : 0,
 
     initialize: function() {
-      toys.topview.initialize(this, { x: TILE_WIDTH * 4, y: TILE_WIDTH * 4 });
+      toys.topview.initialize(this, { x: TILE_WIDTH * settings.x, y: TILE_WIDTH * settings.y });
     },
 
     blit: function() {
