@@ -10,6 +10,8 @@
 		['sprites',         'resources/explode.png'],
 		['cow',             'resources/cow_1.png'],
 		['gameOverScreen',   'resources/gameOver.png']
+		['family_items',    'resources/family_items.png'],
+		['boss_face',       'resources/boss_face_1_64.png']
 	],
 
   addFont: [
@@ -50,6 +52,30 @@
     tilerow: 1,
     gapx:    0,
     gapy:    0  
+  }, {   
+    id:      'boss_face_tiles',
+    image:   'boss_face',
+    tileh:   64,
+    tilew:   64,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0
+  }, {
+    id:     'family_items',
+    image:  'family_items',
+    tileh:   32,
+    tilew:   32,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0
+  }, {
+    id:     'family_items_2',
+    image:  'family_items',
+    tileh:   32,
+    tilew:   32,
+    tilerow: 1,
+    gapx:    32,
+    gapy:    0
   }
   ]
 }

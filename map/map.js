@@ -1,35 +1,35 @@
 function loadMap() {
   return help.asciiArtToMap([
-"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"x     ^^^^                             x",
-"x     ^^^^                             x",
-"x     ^^^^                             x",
-"x     ^^^^                             x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"x                    ^^^^              x",
-"x                    ^^^^              x",
-"x                    ^^^^              x",
-"x                    ^^^^              x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"xxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"x                                      x",
-"xxxx     xxxxxxxxxxxxxxxxxxxxxx     xxxx",
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx        ",
+"x                                      x        ",
+"x                                      x        ",
+"x                                      x        ",
+"x     ^^^^                             x        ",
+"x     ^^^^                             x        ",
+"x     ^^^^                             x        ",
+"x     ^^^^                             x        ",
+"x                                      x        ",
+"x                                      x        ",
+"x                                      x        ",
+"x                                      x        ",
+"x                    ^^^^              x        ",
+"x                    ^^^^              x        ",
+"x                    ^^^^              x        ",
+"x                    ^^^^              x        ",
+"x                                               ",
+"x                                      x        ",
+"x                                      x        ",
+"x                                      x        ",
+"x                                      x        ",
+"x                                      x        ",
+"x                                      x        ",
+"x                                      x        ",
+"xxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx        ",
+"x                                      x        ",
+"x                                      x        ",
+"x                                      x        ",
+"x                                      x        ",
+"xxxx     xxxxxxxxxxxxxxxxxxxxxx     xxxx        ",
     ], [ [null, ' '], [0, 'x'], [1, '^']])
 }
 
@@ -71,7 +71,6 @@ function addMap() {
 
 function extendMap(map) {
   map.getTile = function(x, y) {
-    // console.log("Getting tile for " + x + ', ' + y);
     return this['map'][y][x];
   }
 }
