@@ -8,7 +8,8 @@
 		['enemy_sprite',    'resources/enemy_sprite.png'],
 		['player_bullet',   'resources/bullet.png'],
 		['sprites',         'resources/explode.png'],
-		['cow',             'resources/cow_1.png']
+		['cow',             'resources/cow_1.png'],
+		['gameOverScreen',   'resources/gameOver.png']
 	],
 
   addFont: [
@@ -41,6 +42,14 @@
     tilerow: 1,
     gapx:    0,
     gapy:    0
+  }, {
+    id:      'gameOver_tile',
+    image:   'gameOverScreen',
+    tileh:   640,
+    tilew:   480,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0  
   }
   ]
 }

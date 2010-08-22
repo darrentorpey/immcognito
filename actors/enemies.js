@@ -6,23 +6,35 @@ function addEnemies()
     create_enemy( [ {x: (TILE_WIDTH * 20), y: (TILE_WIDTH * 20) }, 
     {x: (TILE_WIDTH * 20), y: (TILE_WIDTH * 25)} ,
     {x: (TILE_WIDTH * 30), y: (TILE_WIDTH * 25)} ,
-    {x: (TILE_WIDTH * 30), y: (TILE_WIDTH * 20)} ]
+    {x: (TILE_WIDTH * 30), y: (TILE_WIDTH * 20)} ],
+    "enemy_1", "guard"
+    );
+    
+    create_enemy( [ {x: (TILE_WIDTH * 30), y: (TILE_WIDTH * 30) }, 
+    {x: (TILE_WIDTH * 30), y: (TILE_WIDTH * 35)} ,
+    {x: (TILE_WIDTH * 40), y: (TILE_WIDTH * 35)} ,
+    {x: (TILE_WIDTH * 40), y: (TILE_WIDTH * 30)} ],
+    "enemy_2", "boss"
     );
 }
 
-function create_enemy(walkPath) {
+function create_enemy(walkPath, myID, myType) {
     gbox.addObject({
-    id:      'enemy_1',    // id refers to the specific object.
+    id:      myID,    // id refers to the specific object.
     group:   'enemy',       // The rendering group
+    //Put in an if statement to set the tileset
     tileset: 'enemy_tiles', // tileset is where the graphics come from.
     colh:    gbox.getTiles('enemy_tiles').tileh,
     walkIndex : 0,
     steps : walkPath,
+    type : myType,
     turning : true,
-    //sightSquare : [ { x: this.x + (TILE_WIDTH * -2) , y: this.y + (TILE_WIDTH * 5) }, {x: this.x + (TILE_WIDTH * 3), y: 0} ],
     testDetection : 0,
     sightRange : 30,
     theta : 90,
+    
+    ///For debugging purposes
+    testHealth: 100,
 
     initialize: function() {
       toys.topview.initialize(this, {});
@@ -31,24 +43,21 @@ function create_enemy(walkPath) {
     },
 
     first: function() {
+        /*
+        if(this.type == "guard"){
+            //Use guard tileset
+        }else{
+            //Use boss tileset
+        }
+        
+        */   
+    
         this.take_step();
         this.checkSight();
-        
-       // ctx.fillStyle = "rgb(200,0,0)";  
-        //ctx.fillRect (10, 10, 55, 50);  
-        //function rectangle(w,h,x,y,bg,bCol)
-        //document.body.appendChild( rectangle(50,50, 50, 50, 0xFFFF33, 0xFFFF33) );
-        //gbox.blitRect( tox, {x:
-        
-        //gbox.blitRect( gbox.getCanvasContext("map_canvas"), {x: sightSquare[0].x, y: sightSquare[0].y, w: (TILE_WIDTH * 5), h: (TILE_WIDTH * 5), alpha: 1.0, color: "rgb(150, 150, 100)" } );
-        
-        //this.blitRect(tox,{x:0,y:0,w:tox.canvas.width,h:tox.canvas.height,alpha:data.alpha,color:data.color});
     },
     
     take_step: function() { 
-      //  debugger;
-        var compareTo;           
-        //Compare indecies
+        var compareTo;      
         
         if(this.turning){        
             if(this.walkIndex < this.steps.length-1){
@@ -59,7 +68,6 @@ function create_enemy(walkPath) {
                 turning = false;
             }
         }
-      //  debugger;
         
         if (this.steps[this.walkIndex].x > this.steps[compareTo].x){
             //If walking to the left
@@ -70,10 +78,7 @@ function create_enemy(walkPath) {
                 this.turning = true;
             }
             
-            this.x++;
-            
-            //Re-orient the sightSquare
-            //sightSquare = [ {x: this.x + (TILE_WIDTH * -2) , y: this.y + (TILE_WIDTH * 5)}, {x: this.x + (TILE_WIDTH * 3), y: 0} ];                          
+            this.x++;                         
             this.theta = 180;
         }
         
@@ -87,9 +92,7 @@ function create_enemy(walkPath) {
             }else{
                 this.x--;
             } 
-            
-            //Re-orient the sightSquare
-            //sightSquare = [ {x: 0, y: this.y + (TILE_WIDTH * 2)}, {x: this.x + (TILE_WIDTH * -5), y: this.y + (TILE_WIDTH * -3)} ];       
+                
             this.theta = 0;
         }
         
@@ -104,8 +107,6 @@ function create_enemy(walkPath) {
                 this.y++;
             }       
             
-            //Re-orient the sightSquare
-            //sightSquare = [ {x: this.x - (TILE_WIDTH * 2) , y: this.y + (TILE_WIDTH * 5)}, {x: this.x + (TILE_WIDTH * 3), y: 0} ];
             this.theta = 270;
         }
         
@@ -120,21 +121,33 @@ function create_enemy(walkPath) {
                 this.y--;
             }
             
-            //Re-orient the sightSquare
-            //sightSquare = [ {x: this.x - (TILE_WIDTH * 2) , y: this.y + (TILE_WIDTH * 5)}, {x: this.x + (TILE_WIDTH * 3), y: 0} ];
             this.theta = 90;
         }                            
     },
     
     checkSight : function() {
-        //if( (player.x > sightSquare[0].x) && (player.y < sightSquare[0].y) && (player.x < sightSquare[1].x) && (player.y > sightSquare[1].y) ) {
-        var convertedAngle = radToDeg( trigo.getAngle( {x: player.x, y: player.y}, {x: this.x, y: this.y} ) );
-        //console.log("Angle between enemy and player " + convertedAngle);
-        //console.log("Theta " + this.theta + "Range: " + (this.theta+15) + " to " + (this.theta-15) );
-        
-        if( (convertedAngle < this.theta+15) && (convertedAngle > this.theta-15) ){   
+        var convertedAngle = radToDeg( trigo.getAngle( {x: player.x, y: player.y}, {x: this.x, y: this.y} ) );        
+        if( (convertedAngle < this.theta+15) && (convertedAngle > this.theta-15)){   
+            
             console.log("Hey you!");
-            //testDetection++;
+            
+            if(this.type == "guard"){
+                console.log("GUARD: I LIKE PIE");
+                /*
+                if(working){
+                    //Increase boss happiness
+                }else{
+                    //Decrease boss hapiness
+                }
+                
+                */
+                
+            }else if(this.type == "boss"){
+                console.log("BOSS: I WILL DESTROY YOUR FACE OFF"); 
+                maingame.playerDied({wait:10}); 
+            }else{
+                console.log("You dun goofed up");
+            }
         }
     },
 
@@ -151,8 +164,6 @@ function create_enemy(walkPath) {
       });
     }
   });
-  
-  //return gbox.getObject('enemy', 'enemy_1');
 }
        
        /* 
