@@ -3,7 +3,7 @@
 	addImage: [	
 		['font',            'resources/font.png'],
 		['logo',            'resources/logo.png'],
-		['player_sprite',   'resources/player_sprite.png'],
+		['player_sprite',   'resources/immigrantAtlas.png'],
 		['map_spritesheet', 'resources/map_pieces.png'],
 		['enemy_sprite',    'resources/enemy_sprite.png'],
 		['player_bullet',   'resources/bullet.png'],
@@ -16,13 +16,12 @@
   ],
 
   addTiles:[
-   {id:"explosion",image:"sprites",tileh:32,tilew:32,tilerow:4,gapx:0,gapy:0},
    { id: 'cow', image: 'cow', tileh: 64,tilew: 64, tilerow: 1, gapx: 0, gapy: 0},
    {
     id:      'player_tiles',
     image:   'player_sprite',
-    tileh:   16,
-    tilew:   16,
+    tileh:   20,
+    tilew:   20,
     tilerow: 19,
     gapx:    0,
     gapy:    0
@@ -42,14 +41,6 @@
     tilerow: 1,
     gapx:    0,
     gapy:    0
-  }, {
-    id:       'player_shot',
-    image:    'player_bullet',
-    tileh:    4,
-    tilew:    4,
-    tilerow:  2,
-    gapx:     0,
-    gapy:     0
   }
   ]
 }

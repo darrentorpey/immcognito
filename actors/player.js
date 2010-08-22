@@ -17,14 +17,7 @@ function addPlayer() {
       // So for example, this.animList[rightDown].frames[1] would return 12.
       this.animList = {
         still:     { speed: 1, frames: [0]     },
-        right:     { speed: 3, frames: [1, 11] },
-        rightDown: { speed: 3, frames: [2, 12] },
-        down:      { speed: 3, frames: [3, 13] },
-        downLeft:  { speed: 3, frames: [4, 14] },
-        left:      { speed: 3, frames: [5, 15] },
-        leftUp:    { speed: 3, frames: [6, 16] },
-        up:        { speed: 3, frames: [7, 17] },
-        upRight:   { speed: 3, frames: [8, 18] }
+        moving:    { speed: 1, frames: [0, 1, 2, 3, 4, 5, 6, 7] }
       };
 
       // Set the starting animation for the player object.
@@ -40,14 +33,16 @@ function addPlayer() {
 
       // The if statements check for accelerations in the x and y directions and whether they are positive or negative. It then sets the animation index to the keyword corresponding to that direction.
       if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
-      if (this.accx > 0 && this.accy == 0)  this.animIndex = 'right';
-      if (this.accx > 0 && this.accy > 0)   this.animIndex = 'rightDown';
-      if (this.accx == 0 && this.accy > 0)  this.animIndex = 'down';
-      if (this.accx < 0 && this.accy > 0)   this.animIndex = 'downLeft';
-      if (this.accx < 0 && this.accy == 0)  this.animIndex = 'left';
-      if (this.accx < 0 && this.accy < 0)   this.animIndex = 'leftUp';
-      if (this.accx == 0 && this.accy < 0)  this.animIndex = 'up';
-      if (this.accx > 0 && this.accy < 0)   this.animIndex = "upRight";
+      else this.animIndex = 'moving'
+      // if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
+      // if (this.accx > 0 && this.accy == 0)  this.animIndex = 'right';
+      if (this.accx > 0 && this.accy > 0)   this.flipv = true;
+      if (this.accx == 0 && this.accy > 0)  this.flipv = true;
+      if (this.accx < 0 && this.accy > 0)   this.flipv = true;
+      // if (this.accx < 0 && this.accy == 0)  this.animIndex = 'left';
+      if (this.accx < 0 && this.accy < 0)   this.flipv = false;
+      if (this.accx == 0 && this.accy < 0)  this.flipv = false;
+      if (this.accx > 0 && this.accy < 0)   this.flipv = false;
 
       if (gbox.keyIsHit('a')) {
         if (any(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map), function(i) { return i == 1 })) {
@@ -61,8 +56,8 @@ function addPlayer() {
       }
 
       // Set the animation.
-      if (frameCount%this.animList[this.animIndex].speed == 0)
-      this.frame = help.decideFrame(frameCount, this.animList[this.animIndex]);
+      if (frameCount % this.animList[this.animIndex].speed == 0)
+        this.frame = help.decideFrame(frameCount, this.animList[this.animIndex]);
 
       if (this.can_move()) {
         toys.topview.handleAccellerations(this);
