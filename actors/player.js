@@ -48,8 +48,8 @@ function addPlayer() {
         // console.log("Checking...");
         // console.log(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map));
         if (any(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map), function(i) { return i == 1 })) {
-          console.log('Yes!');
-
+          console.log('Tippin time!');
+          gbox.getObject('workplaces', 'cow_1').tip();
         }
       } else if (gbox.keyIsHit("b")) {
         // var capman=gbox.getObject("player","capman"); // As usual, first we pick our capman object...

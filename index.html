@@ -11,12 +11,12 @@
   <script type="text/javascript" src="screens/screens.js"></script>
   <script type="text/javascript" src="actors/player.js"></script>
   <script type="text/javascript" src="actors/enemies.js"></script>
+  <script type="text/javascript" src="actors/workplaces.js"></script>
   <script type="text/javascript" src="extras.js"></script>
 
   <style>BODY { -webkit-user-select: none; margin: 0px }</style>
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
   <script>
-
 window.log=function(){log.history=log.history||[];log.history.push(arguments);if(this.console){console.log(Array.prototype.slice.call(arguments))}};
 
 var maingame;
@@ -97,32 +97,5 @@ function addActors() {
   addEnemies();
 }
 
-function addWorkplaces() {
-  gbox.addObject({
-    id:      'cow_1',    // id refers to the specific object.
-    group:   'workplaces',       // The rendering group
-    tileset: 'cow', // tileset is where the graphics come from.
-    colh:    gbox.getTiles('cow').tileh,
-
-    initialize: function() {
-      toys.topview.initialize(this, {});
-      this.x = TILE_WIDTH * 12;
-      this.y = TILE_WIDTH * 8;
-    },
-
-    blit: function() {
-      gbox.blitTile(gbox.getBufferContext(), {
-        tileset: this.tileset,
-        tile:    this.frame,
-        dx:      this.x,
-        dy:      this.y,
-        fliph:   this.fliph,
-        flipv:   this.flipv,
-        camera:  this.camera,
-        alpha:   1.0
-      });
-    },
-  });
-}
 </script>
 </head><body></body></html>
