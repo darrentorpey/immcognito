@@ -9,6 +9,7 @@
 		['player_bullet',   'resources/bullet.png'],
 		['sprites',         'resources/explode.png'],
 		['cow',             'resources/cow_1.png'],
+		['gameOverScreen',   'resources/gameOver.png']
 		['family_items',    'resources/family_items.png'],
 		['boss_face',       'resources/boss_face_1_64.png'],
 		['boss_face_2',     'resources/boss_face_2_64.png'],
@@ -49,6 +50,14 @@
     gapx:    0,
     gapy:    0
   }, {
+    id:      'gameOver_tile',
+    image:   'gameOverScreen',
+    tileh:   640,
+    tilew:   480,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0  
+  }, {   
     id:      'boss_face_tiles',
     image:   'boss_face',
     tileh:   64,
