@@ -36,13 +36,13 @@ function addPlayer() {
       else this.animIndex = 'moving'
       // if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
       // if (this.accx > 0 && this.accy == 0)  this.animIndex = 'right';
-      // if (this.accx > 0 && this.accy > 0)   this.animIndex = 'rightDown';
-      // if (this.accx == 0 && this.accy > 0)  this.animIndex = 'down';
-      // if (this.accx < 0 && this.accy > 0)   this.animIndex = 'downLeft';
+      if (this.accx > 0 && this.accy > 0)   this.flipv = true;
+      if (this.accx == 0 && this.accy > 0)  this.flipv = true;
+      if (this.accx < 0 && this.accy > 0)   this.flipv = true;
       // if (this.accx < 0 && this.accy == 0)  this.animIndex = 'left';
-      // if (this.accx < 0 && this.accy < 0)   this.animIndex = 'leftUp';
-      // if (this.accx == 0 && this.accy < 0)  this.animIndex = 'up';
-      // if (this.accx > 0 && this.accy < 0)   this.animIndex = "upRight";
+      if (this.accx < 0 && this.accy < 0)   this.flipv = false;
+      if (this.accx == 0 && this.accy < 0)  this.flipv = false;
+      if (this.accx > 0 && this.accy < 0)   this.flipv = false;
 
       if (gbox.keyIsHit('a')) {
         if (any(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map), function(i) { return i == 1 })) {
