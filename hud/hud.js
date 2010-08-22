@@ -1,3 +1,26 @@
+boss_happiness = 6;
+
+function updateHUD() {
+  if (timerJustFinished(player, 'piss_off_boss', 60)) {
+    boss_happiness--;
+    toys.resetToy(player, 'piss_off_boss');
+  }
+
+  if (boss_happiness == 6) {
+    maingame.hud.w['the_boss'].tileset = 'boss_face_two';
+  } else if (boss_happiness == 5) {
+    maingame.hud.w['the_boss'].tileset = 'boss_face_two';
+  } else if (boss_happiness == 4) {
+    maingame.hud.w['the_boss'].tileset = 'boss_face_three';
+  } else if (boss_happiness == 3) {
+    maingame.hud.w['the_boss'].tileset = 'boss_face_four';
+  } else if (boss_happiness == 2) {
+    maingame.hud.w['the_boss'].tileset = 'boss_face_five';
+  } else if (boss_happiness == 1) {
+    maingame.hud.w['the_boss'].tileset = 'boss_face_six';
+  }
+}
+
 function drawHUD() {
   // This adds a "label" widget, with "small"-font text to the screen
   //  located 25 pixels down from the top of the screen and
@@ -35,7 +58,7 @@ function drawHUD() {
     widget: "stack", 
     rightalign: false,
     tileset: "family_items",
-    dx:gbox.getScreenW() - 32,
+    dx:gbox.getScreenW() - 64,
     dy:gbox.getScreenH() - 184,
     gapx: 12,
     gapy: 0,

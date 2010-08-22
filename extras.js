@@ -10,5 +10,5 @@ gbox.getGroup = function(group) {
 }
 
 timerJustFinished = function(obj, name, time) {
-  return toys.timer.after(obj, name, time) == toys.TOY_DONE
+  return toys.timer.after(obj, name, time) == toys.TOY_DONE;
 }

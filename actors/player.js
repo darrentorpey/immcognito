@@ -29,6 +29,7 @@ function addPlayer() {
 
       if (this.doing_work && (toys.timer.after(this, 'work_time', 30) == toys.TOY_DONE)) {
         this.done_doing_work();
+        boss_happiness++;
       }
 
       // The if statements check for accelerations in the x and y directions and whether they are positive or negative. It then sets the animation index to the keyword corresponding to that direction.
@@ -68,6 +69,8 @@ function addPlayer() {
 
       // New code for Part 7
       callWhenColliding(this, 'family_items', 'pickedUp');
+
+      updateHUD();
     },
 
     can_move: function() {
@@ -99,9 +102,9 @@ function addPlayer() {
     },
 
     addFamilyItem: function(item) {
-      console.log("adding item to me...");
+      // console.log("adding item to me...");
       item.alpha = 0;
-      maingame.hud.pushValue("family_collection", "value", item.tile_frame);
+      maingame.hud.pushValue("family_collection", "value", item.frame);
       gbox.trashObject(item);
     }
   });

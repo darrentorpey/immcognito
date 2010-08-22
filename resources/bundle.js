@@ -10,7 +10,12 @@
 		['sprites',         'resources/explode.png'],
 		['cow',             'resources/cow_1.png'],
 		['family_items',    'resources/family_items.png'],
-		['boss_face',       'resources/boss_face_1_64.png']
+		['boss_face',       'resources/boss_face_1_64.png'],
+		['boss_face_2',     'resources/boss_face_2_64.png'],
+		['boss_face_3',     'resources/boss_face_3_64.png'],
+		['boss_face_4',     'resources/boss_face_4_64.png'],
+		['boss_face_5',     'resources/boss_face_5_64.png'],
+		['boss_face_6',     'resources/boss_face_6_64.png']
 	],
 
   addFont: [
@@ -46,6 +51,46 @@
   }, {
     id:      'boss_face_tiles',
     image:   'boss_face',
+    tileh:   64,
+    tilew:   64,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0
+  }, {
+    id:      'boss_face_two',
+    image:   'boss_face_2',
+    tileh:   64,
+    tilew:   64,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0
+  }, {
+    id:      'boss_face_three',
+    image:   'boss_face_3',
+    tileh:   64,
+    tilew:   64,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0
+  }, {
+    id:      'boss_face_four',
+    image:   'boss_face_4',
+    tileh:   64,
+    tilew:   64,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0
+  }, {
+    id:      'boss_face_five',
+    image:   'boss_face_5',
+    tileh:   64,
+    tilew:   64,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0
+  }, {
+    id:      'boss_face_six',
+    image:   'boss_face_6',
     tileh:   64,
     tilew:   64,
     tilerow: 1,
