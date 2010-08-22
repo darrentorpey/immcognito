@@ -19,7 +19,10 @@ function create_enemy(walkPath) {
     walkIndex : 0,
     steps : walkPath,
     turning : true,
-    //sightSquare : [ { x: this.x - (TILE_WIDTH * 2) , y: this.y + (TILE_WIDTH * 5) }, {x: this.x + (TILE_WIDTH * 3), y: 0} ],
+    //sightSquare : [ { x: this.x + (TILE_WIDTH * -2) , y: this.y + (TILE_WIDTH * 5) }, {x: this.x + (TILE_WIDTH * 3), y: 0} ],
+    testDetection : 0,
+    sightRange : 30,
+    theta : 90,
 
     initialize: function() {
       toys.topview.initialize(this, {});
@@ -29,11 +32,17 @@ function create_enemy(walkPath) {
 
     first: function() {
         this.take_step();
+        this.checkSight();
         
        // ctx.fillStyle = "rgb(200,0,0)";  
         //ctx.fillRect (10, 10, 55, 50);  
+        //function rectangle(w,h,x,y,bg,bCol)
+        //document.body.appendChild( rectangle(50,50, 50, 50, 0xFFFF33, 0xFFFF33) );
+        //gbox.blitRect( tox, {x:
         
+        //gbox.blitRect( gbox.getCanvasContext("map_canvas"), {x: sightSquare[0].x, y: sightSquare[0].y, w: (TILE_WIDTH * 5), h: (TILE_WIDTH * 5), alpha: 1.0, color: "rgb(150, 150, 100)" } );
         
+        //this.blitRect(tox,{x:0,y:0,w:tox.canvas.width,h:tox.canvas.height,alpha:data.alpha,color:data.color});
     },
     
     take_step: function() { 
@@ -64,7 +73,8 @@ function create_enemy(walkPath) {
             this.x++;
             
             //Re-orient the sightSquare
-            //sightSquare = [ {x: (this.x + (TILE_WIDTH * -2)) , y: (this.y + (TILE_WIDTH * 5)}, {x: (this.x + (TILE_WIDTH * 3), y: 0} ],                          
+            //sightSquare = [ {x: this.x + (TILE_WIDTH * -2) , y: this.y + (TILE_WIDTH * 5)}, {x: this.x + (TILE_WIDTH * 3), y: 0} ];                          
+            this.theta = 180;
         }
         
         else if (this.steps[this.walkIndex].x <this.steps[compareTo].x){
@@ -79,7 +89,8 @@ function create_enemy(walkPath) {
             } 
             
             //Re-orient the sightSquare
-            //sightSquare = [ {x: 0, y: (this.y + (TILE_WIDTH * 2)}, {x: (this.x + (TILE_WIDTH * -5), y: (this.y + (TILE_WIDTH * -3)} ],       
+            //sightSquare = [ {x: 0, y: this.y + (TILE_WIDTH * 2)}, {x: this.x + (TILE_WIDTH * -5), y: this.y + (TILE_WIDTH * -3)} ];       
+            this.theta = 0;
         }
         
         else if (this.steps[this.walkIndex].y >this.steps[compareTo].y){
@@ -94,7 +105,8 @@ function create_enemy(walkPath) {
             }       
             
             //Re-orient the sightSquare
-            //sightSquare = [ {x: (this.x - (TILE_WIDTH * 2)) , y: (this.y + (TILE_WIDTH * 5)}, {x: (this.x + (TILE_WIDTH * 3), y: 0} ], 
+            //sightSquare = [ {x: this.x - (TILE_WIDTH * 2) , y: this.y + (TILE_WIDTH * 5)}, {x: this.x + (TILE_WIDTH * 3), y: 0} ];
+            this.theta = 270;
         }
         
         else if (this.steps[this.walkIndex].y <this.steps[compareTo].y){
@@ -109,8 +121,21 @@ function create_enemy(walkPath) {
             }
             
             //Re-orient the sightSquare
-            //sightSquare = [ {x: (this.x - (TILE_WIDTH * 2)) , y: (this.y + (TILE_WIDTH * 5)}, {x: (this.x + (TILE_WIDTH * 3), y: 0} ], 
+            //sightSquare = [ {x: this.x - (TILE_WIDTH * 2) , y: this.y + (TILE_WIDTH * 5)}, {x: this.x + (TILE_WIDTH * 3), y: 0} ];
+            this.theta = 90;
         }                            
+    },
+    
+    checkSight : function() {
+        //if( (player.x > sightSquare[0].x) && (player.y < sightSquare[0].y) && (player.x < sightSquare[1].x) && (player.y > sightSquare[1].y) ) {
+        var convertedAngle = radToDeg( trigo.getAngle( {x: player.x, y: player.y}, {x: this.x, y: this.y} ) );
+        //console.log("Angle between enemy and player " + convertedAngle);
+        //console.log("Theta " + this.theta + "Range: " + (this.theta+15) + " to " + (this.theta-15) );
+        
+        if( (convertedAngle < this.theta+15) && (convertedAngle > this.theta-15) ){   
+            console.log("Hey you!");
+            //testDetection++;
+        }
     },
 
     blit: function() {
@@ -126,6 +151,8 @@ function create_enemy(walkPath) {
       });
     }
   });
+  
+  //return gbox.getObject('enemy', 'enemy_1');
 }
        
        /* 

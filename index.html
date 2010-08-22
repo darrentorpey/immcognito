@@ -81,6 +81,7 @@ function loadGame() {
 
   gbox.createCanvas('map_canvas', { w: map.w, h: map.h });
   gbox.blitTilemap(gbox.getCanvasContext('map_canvas'), map);
+  
   gbox.go();
 }
 
@@ -92,10 +93,15 @@ function addActors() {
   addMap();
 
   // Workplaces
-  addWorkplaces();
+  //addWorkplaces();
   
   addEnemies();
 }
+
+function radToDeg(convertMe){
+    return convertMe * (180 / Math.PI)
+}
+
 
 </script>
 </head><body></body></html>
