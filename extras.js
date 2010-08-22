@@ -8,3 +8,7 @@ function any(arr, test) {
 gbox.getGroup = function(group) {
   return this._objects[group];
 }
+
+timerJustFinished = function(obj, name, time) {
+  return toys.timer.after(obj, name, time) == toys.TOY_DONE
+}

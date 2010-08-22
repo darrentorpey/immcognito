@@ -43,6 +43,8 @@ function addMap() {
     first: function() {
       // Increment the global frame counter.
       frameCount++;
+
+      runWorkCycle();
     },
 
     // The blit function is what happens during the game's draw cycle. Everything related to rendering and drawing goes here.
@@ -71,5 +73,19 @@ function extendMap(map) {
   map.getTile = function(x, y) {
     // console.log("Getting tile for " + x + ', ' + y);
     return this['map'][y][x];
+  }
+}
+
+function runWorkCycle() {
+  var cow1 = gbox.getObject('workplaces', 'cow_1');
+  if (!cow1.ready_to_work && timerJustFinished(cow1, 'tip_time', cow1.refresh_speed)) {
+    cow1.ready_to_work = true;
+    toys.resetToy(this, 'tip_time');
+  }
+
+  var cow2 = gbox.getObject('workplaces', 'cow_2');
+  if (!cow2.ready_to_work && timerJustFinished(cow2, 'tip_time', cow2.refresh_speed)) {
+    cow2.ready_to_work = true;
+    toys.resetToy(this, 'tip_time');
   }
 }

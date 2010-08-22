@@ -1,10 +1,11 @@
 // This is our function for adding the player object -- this keeps our main game code nice and clean
 function addPlayer() {
   gbox.addObject({
-    id:      'player_id',    // id refers to the specific object.
-    group:   'player',       // The rendering group
-    tileset: 'player_tiles', // tileset is where the graphics come from.
-    colh:    gbox.getTiles('player_tiles').tileh,
+    id:         'player_id',
+    group:      'player',
+    tileset:    'player_tiles',
+    colh:       gbox.getTiles('player_tiles').tileh,
+    doing_work: false,
 
     initialize: function() {
       toys.topview.initialize(this, {});
@@ -33,6 +34,10 @@ function addPlayer() {
     first: function() {
       toys.topview.controlKeys(this, { left: 'left', right: 'right', up: 'up', down: 'down' });
 
+      if (this.doing_work && (toys.timer.after(this, 'work_time', 30) == toys.TOY_DONE)) {
+        this.done_doing_work();
+      }
+
       // The if statements check for accelerations in the x and y directions and whether they are positive or negative. It then sets the animation index to the keyword corresponding to that direction.
       if (this.accx == 0 && this.accy == 0) this.animIndex = 'still';
       if (this.accx > 0 && this.accy == 0)  this.animIndex = 'right';
@@ -44,29 +49,44 @@ function addPlayer() {
       if (this.accx == 0 && this.accy < 0)  this.animIndex = 'up';
       if (this.accx > 0 && this.accy < 0)   this.animIndex = "upRight";
 
-      if (gbox.keyIsHit("a")) {
-        // console.log("Checking...");
-        // console.log(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map));
+      if (gbox.keyIsHit('a')) {
         if (any(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map), function(i) { return i == 1 })) {
-          console.log('Tippin time!');
-
-          var nearestWorkplace = findNearestWorkplace(this);
-          nearestWorkplace.tip();
+          findNearestWorkplace(this).tip();
+          this.start_doing_work();
         }
-      } else if (gbox.keyIsHit("b")) {
+      } else if (gbox.keyIsHit('b')) {
       } else if (gbox.keyIsHit('c')) {
+        findNearestWorkplace(this).tip();
+        this.done_doing_work();
       }
 
       // Set the animation.
       if (frameCount%this.animList[this.animIndex].speed == 0)
       this.frame = help.decideFrame(frameCount, this.animList[this.animIndex]);
 
-      toys.topview.handleAccellerations(this);
-      toys.topview.applyForces(this);
-      toys.topview.tileCollision(this, map, 'map', null, { tollerance: 6, approximation: 3 });
+      if (this.can_move()) {
+        toys.topview.handleAccellerations(this);
+        toys.topview.applyForces(this);
+        toys.topview.tileCollision(this, map, 'map', null, { tollerance: 6, approximation: 3 });
+      }
 
       // New code for Part 7
       callWhenColliding(this, 'enemy', 'gameOverFail');
+    },
+
+    can_move: function() {
+      return !this.doing_work;
+    },
+
+    start_doing_work: function() {
+      toys.resetToy(this, "work_time");
+      this.doing_work = true;
+    },
+
+    done_doing_work: function() {
+      toys.resetToy(this, "work_time");
+      this.doing_work = false;
+      findNearestWorkplace(this).tip();
     },
 
     blit: function() {
