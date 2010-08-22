@@ -44,6 +44,23 @@ function addPlayer() {
       if (this.accx == 0 && this.accy < 0)  this.animIndex = 'up';
       if (this.accx > 0 && this.accy < 0)   this.animIndex = "upRight";
 
+      if (gbox.keyIsHit("a")) {
+        // console.log("Checking...");
+        // console.log(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map));
+        if (any(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map), function(i) { return i == 1 })) {
+          console.log('Yes!');
+
+        }
+      } else if (gbox.keyIsHit("b")) {
+        // var capman=gbox.getObject("player","capman"); // As usual, first we pick our capman object...
+        // maingame.bullettimer=10; // ...stop the game for a while.
+        // capman.kill(); // ...kill capman. "kill" is the custom method we've created into the capman object.
+      } else if (gbox.keyIsHit('c')) {
+        // var ghost = GHOSTS[0];
+        //toys.topview.controlKeys(ghost,{pressleft:1});
+        // ghost.swap();
+      }
+
       // Set the animation.
       if (frameCount%this.animList[this.animIndex].speed == 0)
       this.frame = help.decideFrame(frameCount, this.animList[this.animIndex]);
@@ -69,6 +86,23 @@ function addPlayer() {
       });
     },
   });
+
+  return gbox.getObject('player', 'player_id');
+}
+
+function adjacentTiles(x, y, map) {
+  tiles = [];
+
+  tiles.push(map.getTile(x - 1, y - 1));
+  tiles.push(map.getTile(x,     y - 1));
+  tiles.push(map.getTile(x + 1, y - 1));
+  tiles.push(map.getTile(x + 1, y));
+  tiles.push(map.getTile(x + 1, y + 1));
+  tiles.push(map.getTile(x    , y + 1));
+  tiles.push(map.getTile(x - 1, y + 1));
+  tiles.push(map.getTile(x - 1, y));
+
+  return tiles;
 }
 
 function callWhenColliding(obj,group,call) {

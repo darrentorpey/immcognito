@@ -66,3 +66,10 @@ function addMap() {
     }
   });
 }
+
+function extendMap(map) {
+  map.getTile = function(x, y) {
+    // console.log("Getting tile for " + x + ', ' + y);
+    return this['map'][y][x];
+  }
+}
