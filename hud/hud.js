@@ -60,7 +60,7 @@ function drawHUD() {
     tileset: "family_items",
     dx:gbox.getScreenW() - 64,
     dy:gbox.getScreenH() - 184,
-    gapx: 12,
+    gapx: 32,
     gapy: 0,
     maxshown:8,
     value: [] });

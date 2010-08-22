@@ -9,7 +9,7 @@
 		['player_bullet',   'resources/bullet.png'],
 		['sprites',         'resources/explode.png'],
 		['cow',             'resources/cow_1.png'],
-		['gameOverScreen',   'resources/gameOver.png']
+		['gameOverScreen',   'resources/gameOver.png'],
 		['family_items',    'resources/family_items.png'],
 		['boss_face',       'resources/boss_face_1_64.png'],
 		['boss_face_2',     'resources/boss_face_2_64.png'],

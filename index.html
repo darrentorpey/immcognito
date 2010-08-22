@@ -77,14 +77,34 @@ function loadGame() {
   // Game ending
 	//maingame.gameEndingIntroAnimation = function(reset) {
 	maingame.playerDied = function() {
-	  // addGameOverScreen();
-        /*
-        if (reset) {
-			toys.resetToy(this,"default-blinker");
-		} else {
-			//gbox.blitFade(gbox.getBufferContext(),{alpha:1});
-			addGameOverScreen();
-		}*/		  	
+    gbox.addObject({
+        group: 'player',
+        id: 'gameOverScreen_1',
+        tileset: 'gameOver_tile', 
+        x: 0,
+        y: 0,
+    
+        initialize: function(){
+            toys.topview.initialize(this, {});
+            this.x = 0;
+            this.y = 0;
+        },
+        first:function(){
+            //Button press to reset game?
+        },
+        blit: function() {
+          gbox.blitTile(gbox.getBufferContext(), {
+            tileset: this.tileset,
+            tile:    this.frame,
+            dx:      this.x,
+            dy:      this.y,
+            fliph:   this.fliph,
+            flipv:   this.flipv,
+            camera:  this.camera,
+            alpha:   1.0
+          });
+        }
+    });
 	}
   
   gbox.go();
