@@ -129,10 +129,7 @@ function create_enemy(walkPath, myID, myType) {
         var convertedAngle = radToDeg( trigo.getAngle( {x: player.x, y: player.y}, {x: this.x, y: this.y} ) );        
         if( (convertedAngle < this.theta+15) && (convertedAngle > this.theta-15)){   
             
-            console.log("Hey you!");
-            
             if(this.type == "guard"){
-                console.log("GUARD: I LIKE PIE");
                 /*
                 if(working){
                     //Increase boss happiness
@@ -143,10 +140,8 @@ function create_enemy(walkPath, myID, myType) {
                 */
                 
             }else if(this.type == "boss"){
-                console.log("BOSS: I WILL DESTROY YOUR FACE OFF"); 
                 maingame.playerDied({wait:10}); 
             }else{
-                console.log("You dun goofed up");
             }
         }
     },

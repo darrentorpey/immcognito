@@ -47,6 +47,11 @@ function addPlayer() {
       if (this.accx > 0 && this.accy < 0)   this.flipv = false;
 
       if (gbox.keyIsHit('a')) {
+        var intro = gbox.getObject('game', 'intro_screen');
+        if (intro) {
+          gbox.trashObject(intro);
+        }
+
         if (any(adjacentTiles(help.xPixelToTileX(map, this.x), help.yPixelToTileY(map, this.y), map), function(i) { return i == 1 })) {
           findNearestWorkplace(this).tip();
           this.start_doing_work();

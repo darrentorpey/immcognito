@@ -1,22 +1,24 @@
 {
 	// Graphic resources.
 	addImage: [	
-		['font',            'resources/font.png'],
-		['logo',            'resources/logo.png'],
-		['player_sprite',   'resources/immigrantAtlas.png'],
-		['map_spritesheet', 'resources/map_pieces.png'],
-		['enemy_sprite',    'resources/enemy_sprite.png'],
-		['player_bullet',   'resources/bullet.png'],
-		['sprites',         'resources/explode.png'],
-		['cow',             'resources/cow_1.png'],
-		['gameOverScreen',   'resources/gameOver.png'],
-		['family_items',    'resources/family_items.png'],
-		['boss_face',       'resources/boss_face_1_64.png'],
-		['boss_face_2',     'resources/boss_face_2_64.png'],
-		['boss_face_3',     'resources/boss_face_3_64.png'],
-		['boss_face_4',     'resources/boss_face_4_64.png'],
-		['boss_face_5',     'resources/boss_face_5_64.png'],
-		['boss_face_6',     'resources/boss_face_6_64.png']
+		['font',              'resources/font.png'],
+		['logo',              'resources/logo.png'],
+		['player_sprite',     'resources/immigrantAtlas.png'],
+		['map_spritesheet',   'resources/map_pieces.png'],
+		['enemy_sprite',      'resources/enemy_sprite.png'],
+		['player_bullet',     'resources/bullet.png'],
+		['sprites',           'resources/explode.png'],
+		['cow',               'resources/cow_1.png'],
+		['gameOverScreen',     'resources/gameOver.png'],
+		['family_items',      'resources/family_items.png'],
+		['boss_face',         'resources/boss_face_1_64.png'],
+		['boss_face_2',       'resources/boss_face_2_64.png'],
+		['boss_face_3',       'resources/boss_face_3_64.png'],
+		['boss_face_4',       'resources/boss_face_4_64.png'],
+		['boss_face_5',       'resources/boss_face_5_64.png'],
+		['boss_face_6',       'resources/boss_face_6_64.png'],
+		['intro_screen',      'resources/intro_screen.jpg'],
+		['family_item_apple', 'resources/family_item_apple.png']
 	],
 
   addFont: [
@@ -120,6 +122,22 @@
     tilew:   32,
     tilerow: 1,
     gapx:    32,
+    gapy:    0
+  }, {
+    id:     'intro_screen_it',
+    image:  'intro_screen',
+    tileh:   540,
+    tilew:   720,
+    tilerow: 1,
+    gapx:    0,
+    gapy:    0
+  }, {
+    id:     'family_item_apple',
+    image:  'family_item_apple',
+    tileh:   32,
+    tilew:   32,
+    tilerow: 1,
+    gapx:    0,
     gapy:    0
   }
   ]
