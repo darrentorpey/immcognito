@@ -52,6 +52,7 @@ function addPlayer() {
           this.start_doing_work();
         }
       } else if (gbox.keyIsHit('b')) {
+        maingame.playerDied({ wait: 100 });
       } else if (gbox.keyIsHit('c')) {
         findNearestWorkplace(this).tip();
         this.done_doing_work();

@@ -54,8 +54,9 @@ function gameOverScreen() {
         camera:  this.camera,
         alpha:   1.0
       });
+      gbox.blitRect(gbox.getBufferContext(), { x: this.x, y: this.y, w: this.colh, h: this.colh, alpha: 0.8, color: "rgb(100,100,100)" });
     }
   });
 
-  return true;
+  return false;
 }

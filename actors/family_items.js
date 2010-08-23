@@ -1,6 +1,6 @@
 function addFamilyItems() {
-  addFamilyItem(1, { tileset: 'family_items', x: 4, y: 4 });
-  addFamilyItem(2, { tile_frame: 1, tileset: 'family_items_2', x: 30, y: 30 });
+  addFamilyItem(1, { tileset: 'family_items', x: 2, y: 4 });
+  addFamilyItem(2, { tile_frame: 1, tileset: 'family_items_2', x: 10, y: 30 });
   addFamilyItem(3, { tile_frame: 1, tileset: 'family_item_apple', x: 20, y: 20 });
 }
 
@@ -29,7 +29,6 @@ function addFamilyItem(id_num, settings) {
     },
 
     pickedUp: function() {
-      // console.log("Picked up");
       player.addFamilyItem(this);
     }
   });

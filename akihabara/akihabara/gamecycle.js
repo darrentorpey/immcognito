@@ -420,6 +420,12 @@ var gamecycle={
 							break;
 						}
 					}
+
+          if (this.state != this.last_state) {
+            log("State is now: " + this.state);
+            this.last_state = this.state;
+          }
+
 					this.hud.blit();
 					break;
 				}
