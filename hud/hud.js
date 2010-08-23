@@ -1,7 +1,7 @@
 boss_happiness = 6;
 
 function updateHUD() {
-  if (timerJustFinished(player, 'piss_off_boss', 60)) {
+  if (timerJustFinished(player, 'piss_off_boss', 240)) {
     boss_happiness--;
     toys.resetToy(player, 'piss_off_boss');
   }
@@ -11,13 +11,19 @@ function updateHUD() {
   } else if (boss_happiness == 5) {
     maingame.hud.w['the_boss'].tileset = 'boss_face_two';
   } else if (boss_happiness == 4) {
+      gbox.stopAudio("happy");
+      gbox.playAudio("lesshappy");
     maingame.hud.w['the_boss'].tileset = 'boss_face_three';
   } else if (boss_happiness == 3) {
     maingame.hud.w['the_boss'].tileset = 'boss_face_four';
+      gbox.stopAudio("lesshappy");
+      gbox.playAudio("nothappy");
   } else if (boss_happiness == 2) {
     maingame.hud.w['the_boss'].tileset = 'boss_face_five';
   } else if (boss_happiness == 1) {
     maingame.hud.w['the_boss'].tileset = 'boss_face_six';
+      gbox.stopAudio("nothappy");
+      gbox.playAudio("bad");
   }
 }
 

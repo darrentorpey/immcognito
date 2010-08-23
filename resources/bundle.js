@@ -17,7 +17,7 @@
 		['boss_face_4',       'resources/boss_face_4_64.png'],
 		['boss_face_5',       'resources/boss_face_5_64.png'],
 		['boss_face_6',       'resources/boss_face_6_64.png'],
-		['intro_screen',      'resources/intro_screen.jpg'],
+		['intro_screen',      'resources/intro_screen_l.jpg'],
 		['family_item_apple', 'resources/family_item_apple.png']
 	],
 
@@ -140,5 +140,11 @@
     gapx:    0,
     gapy:    0
   }
-  ]
+  ],
+	addAudio:[
+		["bad", ["resources/25-00.ogg"],{ channel:"bgmusic", loop:true}],
+		["nothappy", ["resources/50-25.ogg"],{ channel:"bgmusic", loop:true}],
+		["lesshappy", ["resources/75-50.ogg"],{ channel:"bgmusic", loop:true}],
+		["happy", ["resources/start.ogg"],{ channel:"bgmusic", loop:true}]
+	]
 }

@@ -47,6 +47,8 @@ function addPlayer() {
       if (this.accx > 0 && this.accy < 0)   this.flipv = false;
 
       if (gbox.keyIsHit('a')) {
+        gbox.playAudio("happy");
+
         var intro = gbox.getObject('game', 'intro_screen');
         if (intro) {
           gbox.trashObject(intro);

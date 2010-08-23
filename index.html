@@ -44,6 +44,7 @@ window.addEventListener('load', function () {
 
 function loadGame() {
   gbox.setGroups(['background', 'bullets', 'workplaces', 'family_items', 'player', 'enemy', 'game']);
+  gbox.setAudioChannels({ bgmusic:{volume: 0.8},sfx:{volume:1.0}});
 
   maingame = gamecycle.createMaingame('game', 'game');
 
