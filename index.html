@@ -52,6 +52,7 @@ function loadGame() {
   maingame.gameMenu = function() { return true; };
   maingame.gameIntroAnimation = function() { return true; };
   maingame.gameTitleIntroAnimation = introScreenAnimation;
+	maingame.gameoverIntroAnimation = gameOverScreen;
 
   maingame.changeLevel = function() {
     gbox.playAudio('happy');
@@ -91,8 +92,6 @@ function loadGame() {
 
   gbox.createCanvas('map_canvas', { w: map.w, h: map.h });
   gbox.blitTilemap(gbox.getCanvasContext('map_canvas'), map);
-
-	maingame.gameoverIntroAnimation = gameOverScreen;
   
   gbox.go();
 }
