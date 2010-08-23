@@ -1,7 +1,7 @@
 boss_happiness = 6;
 
 function updateHUD() {
-  if (timerJustFinished(player, 'piss_off_boss', 240)) {
+  if (timerJustFinished(player, 'piss_off_boss', 360)) {
     boss_happiness--;
     toys.resetToy(player, 'piss_off_boss');
   }

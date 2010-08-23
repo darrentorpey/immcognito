@@ -17,7 +17,7 @@
 		['boss_face_4',       'resources/boss_face_4_64.png'],
 		['boss_face_5',       'resources/boss_face_5_64.png'],
 		['boss_face_6',       'resources/boss_face_6_64.png'],
-		['intro_screen',      'resources/intro_screen_l.jpg'],
+		['intro_screen',      'resources/intro_screen_640.jpg'],
 		['family_item_apple', 'resources/family_item_apple.png']
 	],
 
@@ -126,8 +126,8 @@
   }, {
     id:     'intro_screen_it',
     image:  'intro_screen',
-    tileh:   540,
-    tilew:   720,
+    tileh:   480,
+    tilew:   640,
     tilerow: 1,
     gapx:    0,
     gapy:    0

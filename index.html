@@ -7,20 +7,21 @@
   <script type="text/javascript" src="akihabara/akihabara/tool.js"></script>
   <script type="text/javascript" src="akihabara/akihabara/gamecycle.js"></script>
 
-  <script type="text/javascript" src="map/map.js"></script>
-  <script type="text/javascript" src="screens/screens.js"></script>
+  <script type="text/javascript" src="extras/log.js"></script>
+  <script type="text/javascript" src="extras/extras.js"></script>
+  <script type="text/javascript" src="extras/gbox.js"></script>
+
+  <script type="text/javascript" src="map.js"></script>
+  <script type="text/javascript" src="screens.js"></script>
   <script type="text/javascript" src="actors/player.js"></script>
   <script type="text/javascript" src="actors/enemies.js"></script>
   <script type="text/javascript" src="actors/workplaces.js"></script>
   <script type="text/javascript" src="actors/family_items.js"></script>
   <script type="text/javascript" src="hud/hud.js"></script>
-  <script type="text/javascript" src="extras.js"></script>
 
   <style>BODY { -webkit-user-select: none; margin: 0px }</style>
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
   <script>
-window.log=function(){log.history=log.history||[];log.history.push(arguments);if(this.console){console.log(Array.prototype.slice.call(arguments))}};
-
 var maingame;
 var map;
 var player;
@@ -51,11 +52,27 @@ function loadGame() {
   maingame.gameMenu = function() { return true; };
   maingame.gameIntroAnimation = function() { return true; };
   maingame.gameTitleIntroAnimation = introScreenAnimation;
-  maingame.initializeGame = function() {
-    addActors();
 
-    // This gives us the time at which the game started,
-    //  in milliseconds since the epoch
+  maingame.changeLevel = function() {
+    gbox.playAudio('happy');
+
+    var intro = gbox.getObject('game', 'intro_screen');
+    if (intro) {
+      gbox.trashObject(intro);
+    }
+  }
+
+  maingame.initializeGame = function() {
+    player = addPlayer();
+
+    addMap();
+
+    addWorkplaces();
+  
+    addEnemies();
+
+    addFamilyItems();
+
     timeStarted = (new Date()).getTime();
 
     drawHUD();
@@ -74,94 +91,10 @@ function loadGame() {
 
   gbox.createCanvas('map_canvas', { w: map.w, h: map.h });
   gbox.blitTilemap(gbox.getCanvasContext('map_canvas'), map);
-  
-  // Game ending
-	//maingame.gameEndingIntroAnimation = function(reset) {
-	maingame.playerDied = function() {
-    gbox.addObject({
-        group: 'player',
-        id: 'gameOverScreen_1',
-        tileset: 'gameOver_tile', 
-        x: 0,
-        y: 0,
 
-        initialize: function(){
-            toys.topview.initialize(this, {});
-            this.x = 0;
-            this.y = 0;
-        },
-        first:function(){
-            //Button press to reset game?
-        },
-        blit: function() {
-          gbox.blitTile(gbox.getBufferContext(), {
-            tileset: this.tileset,
-            tile:    this.frame,
-            dx:      this.x,
-            dy:      this.y,
-            fliph:   this.fliph,
-            flipv:   this.flipv,
-            camera:  this.camera,
-            alpha:   1.0
-          });
-        }
-    });
-	}
+	maingame.gameoverIntroAnimation = gameOverScreen;
   
   gbox.go();
-}
-
-
-/*
-function addGameOverScreen(){
-    gbox.addObject({
-        group: 'player',
-        id: 'gameOverScreen_1',
-        tileset: 'gameOver_tile', 
-        x: 0,
-        y: 0,   
-    
-        initialize: function(){
-            toys.topview.initialize(this, {});
-            this.x = 0;
-            this.y = 0;
-        },
-        first:function(){
-            //Button press to reset game?
-        },
-        blit: function() {
-          gbox.blitTile(gbox.getBufferContext(), {
-            tileset: this.tileset,
-            tile:    this.frame,
-            dx:      this.x,
-            dy:      this.y,
-            fliph:   this.fliph,
-            flipv:   this.flipv,
-            camera:  this.camera,
-            alpha:   1.0
-          });
-        }
-    });
-}
-*/
-
-function addActors() {
-  // Create the 'player' (see tutorial Part 2 for a detailed explanation)
-  player = addPlayer();
-
-  // Create the 'map' (see tutorial Part 3 for a detailed explanation)
-  addMap();
-
-  // Workplaces
-  addWorkplaces();
-  
-  addEnemies();
-
-  addFamilyItems();
-}
-
-function radToDeg(convertMe){
-    return convertMe * (180 / Math.PI)
 }
 </script>
 </head><body></body></html>

@@ -5,10 +5,10 @@ function any(arr, test) {
   return result;
 }
 
-gbox.getGroup = function(group) {
-  return this._objects[group];
-}
-
 timerJustFinished = function(obj, name, time) {
   return toys.timer.after(obj, name, time) == toys.TOY_DONE;
+}
+
+function radToDeg(convertMe) {
+  return convertMe * (180 / Math.PI);
 }
